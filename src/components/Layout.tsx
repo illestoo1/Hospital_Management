@@ -93,7 +93,7 @@ export default function Layout({ children, currentPage, onPageChange }: LayoutPr
             {/* Profile */}
             <div className="flex items-center space-x-3">
               <div className="text-right">
-                <p className="text-sm font-medium text-gray-900">Dr. Sarah Johnson</p>
+                <p className="text-sm font-medium text-gray-900">Dr. Mark</p>
                 <p className="text-xs text-gray-500">Administrator</p>
               </div>
               <img

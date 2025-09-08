@@ -80,44 +80,42 @@ function Dashboard() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div style={{ padding: '24px', backgroundColor: '#f9fafb', minHeight: '100vh' }}>
       {/* Welcome Section */}
-      <div className="card">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', marginBottom: '24px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <h1 style={{ fontSize: '30px', fontWeight: 'bold', color: '#111827', marginBottom: '8px' }}>
           Welcome back, Dr. Sarah Johnson! 👋
         </h1>
-        <p className="text-gray-600">
+        <p style={{ color: '#6b7280' }}>
           Here's what's happening at your hospital today.
         </p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px', marginBottom: '24px' }}>
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <div key={index} className="card">
-              <div className="flex items-center justify-between">
+            <div key={index} style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">{stat.value}</p>
+                  <p style={{ fontSize: '14px', fontWeight: '500', color: '#6b7280' }}>{stat.title}</p>
+                  <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#111827', marginTop: '4px' }}>{stat.value}</p>
                 </div>
-                <div className={`w-12 h-12 ${stat.color} rounded-lg flex items-center justify-center`}>
-                  <Icon className="w-6 h-6 text-white" />
+                <div style={{ width: '48px', height: '48px', backgroundColor: stat.color === 'bg-blue-500' ? '#3b82f6' : stat.color === 'bg-green-500' ? '#10b981' : stat.color === 'bg-purple-500' ? '#8b5cf6' : '#f59e0b', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Icon style={{ width: '24px', height: '24px', color: 'white' }} />
                 </div>
               </div>
-              <div className="flex items-center mt-4">
+              <div style={{ display: 'flex', alignItems: 'center', marginTop: '16px' }}>
                 {stat.changeType === "increase" ? (
-                  <ArrowUpIcon className="w-4 h-4 text-green-500 mr-1" />
+                  <ArrowUpIcon style={{ width: '16px', height: '16px', color: '#10b981', marginRight: '4px' }} />
                 ) : (
-                  <ArrowDownIcon className="w-4 h-4 text-red-500 mr-1" />
+                  <ArrowDownIcon style={{ width: '16px', height: '16px', color: '#ef4444', marginRight: '4px' }} />
                 )}
-                <span className={`text-sm font-medium ${
-                  stat.changeType === "increase" ? "text-green-600" : "text-red-600"
-                }`}>
+                <span style={{ fontSize: '14px', fontWeight: '500', color: stat.changeType === "increase" ? '#059669' : '#dc2626' }}>
                   {stat.change}
                 </span>
-                <span className="text-sm text-gray-500 ml-1">from last month</span>
+                <span style={{ fontSize: '14px', color: '#6b7280', marginLeft: '4px' }}>from last month</span>
               </div>
             </div>
           );
@@ -125,42 +123,42 @@ function Dashboard() {
       </div>
 
       {/* Recent Activities and Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px', marginBottom: '24px' }}>
         {/* Recent Activities */}
-        <div className="lg:col-span-2 card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activities</h3>
-          <div className="space-y-4">
+        <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>Recent Activities</h3>
+          <div style={{ marginBottom: '16px' }}>
             {recentActivities.map((activity) => (
-              <div key={activity.id} className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50">
-                <div className="w-2 h-2 bg-hospital-500 rounded-full mt-2"></div>
-                <div className="flex-1">
-                  <p className="text-sm text-gray-900">{activity.message}</p>
-                  <p className="text-xs text-gray-500 mt-1">
+              <div key={activity.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', padding: '12px', borderRadius: '8px', marginBottom: '8px' }}>
+                <div style={{ width: '8px', height: '8px', backgroundColor: '#22c55e', borderRadius: '50%', marginTop: '8px' }}></div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontSize: '14px', color: '#111827' }}>{activity.message}</p>
+                  <p style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
                     {activity.patient} • {activity.time}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <button className="btn-secondary w-full mt-4">
+          <button style={{ width: '100%', padding: '8px 16px', backgroundColor: '#f3f4f6', color: '#374151', border: 'none', borderRadius: '8px', fontWeight: '500' }}>
             View All Activities
           </button>
         </div>
 
         {/* Quick Actions */}
-        <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-          <div className="space-y-3">
-            <button className="btn-primary w-full">
+        <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>Quick Actions</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <button style={{ width: '100%', padding: '8px 16px', backgroundColor: '#22c55e', color: 'white', border: 'none', borderRadius: '8px', fontWeight: '500' }}>
               Add New Patient
             </button>
-            <button className="btn-secondary w-full">
+            <button style={{ width: '100%', padding: '8px 16px', backgroundColor: '#f3f4f6', color: '#374151', border: 'none', borderRadius: '8px', fontWeight: '500' }}>
               Schedule Appointment
             </button>
-            <button className="btn-secondary w-full">
+            <button style={{ width: '100%', padding: '8px 16px', backgroundColor: '#f3f4f6', color: '#374151', border: 'none', borderRadius: '8px', fontWeight: '500' }}>
               View Reports
             </button>
-            <button className="btn-secondary w-full">
+            <button style={{ width: '100%', padding: '8px 16px', backgroundColor: '#f3f4f6', color: '#374151', border: 'none', borderRadius: '8px', fontWeight: '500' }}>
               Manage Staff
             </button>
           </div>
@@ -168,49 +166,49 @@ function Dashboard() {
       </div>
 
       {/* Upcoming Appointments */}
-      <div className="card">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Appointments</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full">
+      <div style={{ backgroundColor: 'white', padding: '24px', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>Upcoming Appointments</h3>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%' }}>
             <thead>
-              <tr className="border-b border-gray-200">
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Patient</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Doctor</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Time</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Department</th>
-                <th className="text-left py-3 px-4 font-medium text-gray-700">Status</th>
+              <tr style={{ borderBottom: '1px solid #e5e7eb' }}>
+                <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: '500', color: '#374151' }}>Patient</th>
+                <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: '500', color: '#374151' }}>Doctor</th>
+                <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: '500', color: '#374151' }}>Time</th>
+                <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: '500', color: '#374151' }}>Department</th>
+                <th style={{ textAlign: 'left', padding: '12px 16px', fontWeight: '500', color: '#374151' }}>Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-100">
-                <td className="py-3 px-4">John Doe</td>
-                <td className="py-3 px-4">Dr. Smith</td>
-                <td className="py-3 px-4">10:00 AM</td>
-                <td className="py-3 px-4">Cardiology</td>
-                <td className="py-3 px-4">
-                  <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}>
+                <td style={{ padding: '12px 16px' }}>John Doe</td>
+                <td style={{ padding: '12px 16px' }}>Dr. Smith</td>
+                <td style={{ padding: '12px 16px' }}>10:00 AM</td>
+                <td style={{ padding: '12px 16px' }}>Cardiology</td>
+                <td style={{ padding: '12px 16px' }}>
+                  <span style={{ padding: '4px 8px', backgroundColor: '#dcfce7', color: '#166534', borderRadius: '16px', fontSize: '12px' }}>
                     Confirmed
                   </span>
                 </td>
               </tr>
-              <tr className="border-b border-gray-100">
-                <td className="py-3 px-4">Jane Smith</td>
-                <td className="py-3 px-4">Dr. Johnson</td>
-                <td className="py-3 px-4">2:30 PM</td>
-                <td className="py-3 px-4">Neurology</td>
-                <td className="py-3 px-4">
-                  <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}>
+                <td style={{ padding: '12px 16px' }}>Jane Smith</td>
+                <td style={{ padding: '12px 16px' }}>Dr. Johnson</td>
+                <td style={{ padding: '12px 16px' }}>2:30 PM</td>
+                <td style={{ padding: '12px 16px' }}>Neurology</td>
+                <td style={{ padding: '12px 16px' }}>
+                  <span style={{ padding: '4px 8px', backgroundColor: '#fef3c7', color: '#92400e', borderRadius: '16px', fontSize: '12px' }}>
                     Pending
                   </span>
                 </td>
               </tr>
               <tr>
-                <td className="py-3 px-4">Mike Wilson</td>
-                <td className="py-3 px-4">Dr. Brown</td>
-                <td className="py-3 px-4">4:15 PM</td>
-                <td className="py-3 px-4">Orthopedics</td>
-                <td className="py-3 px-4">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                <td style={{ padding: '12px 16px' }}>Mike Wilson</td>
+                <td style={{ padding: '12px 16px' }}>Dr. Brown</td>
+                <td style={{ padding: '12px 16px' }}>4:15 PM</td>
+                <td style={{ padding: '12px 16px' }}>Orthopedics</td>
+                <td style={{ padding: '12px 16px' }}>
+                  <span style={{ padding: '4px 8px', backgroundColor: '#dbeafe', color: '#1e40af', borderRadius: '16px', fontSize: '12px' }}>
                     In Progress
                   </span>
                 </td>
